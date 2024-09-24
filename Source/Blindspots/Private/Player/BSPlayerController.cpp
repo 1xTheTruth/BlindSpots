@@ -34,7 +34,10 @@ void ABSPlayerController::SetupInputComponent()
 
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
 
-	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ABSPlayerController::Move);
+	EnhancedInputComponent->BindAction(MoveActionForward, ETriggerEvent::Triggered, this, &ABSPlayerController::Move);
+	EnhancedInputComponent->BindAction(MoveActionBackward, ETriggerEvent::Triggered, this, &ABSPlayerController::Move);
+	EnhancedInputComponent->BindAction(MoveActionLeft, ETriggerEvent::Triggered, this, &ABSPlayerController::Move);
+	EnhancedInputComponent->BindAction(MoveActionRight, ETriggerEvent::Triggered, this, &ABSPlayerController::Move);
 }
 
 void ABSPlayerController::Move(const FInputActionValue& InputActionValue)
