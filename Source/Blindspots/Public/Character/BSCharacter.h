@@ -14,4 +14,6 @@ class BLINDSPOTS_API ABSCharacter : public ABSCharacterBase
 {
 	GENERATED_BODY()
 	
+public:
+	ABSCharacter();
 };
