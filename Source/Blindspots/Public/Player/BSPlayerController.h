@@ -10,6 +10,7 @@
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
+class IEnemyInterface;
 
 /**
  * 
@@ -22,6 +23,8 @@ class BLINDSPOTS_API ABSPlayerController : public APlayerController
 public:
 
 	ABSPlayerController();
+
+	virtual void PlayerTick(float DeltaTime) override;
 
 protected:
 
@@ -46,4 +49,9 @@ private:
 	TObjectPtr<UInputAction> MoveActionRight;
 
 	void Move(const FInputActionValue& InputActionValue);
+
+	void CursorTrace();
+
+	TScriptInterface<IEnemyInterface> LastActor;
+	TScriptInterface<IEnemyInterface> ThisActor;
 };
