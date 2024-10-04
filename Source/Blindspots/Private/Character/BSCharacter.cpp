@@ -2,7 +2,10 @@
 
 
 #include "Character/BSCharacter.h"
+
+#include "AbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Player/BSPlayerState.h"
 
 ABSCharacter::ABSCharacter()
 {
@@ -14,4 +17,29 @@ ABSCharacter::ABSCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
+}
+
+void ABSCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	//Init ability actor info for the Server
+	InitAbilityActorInfo();
+}
+
+void ABSCharacter::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+
+	//Init ability actor info for the Client
+	InitAbilityActorInfo();
+}
+
+void ABSCharacter::InitAbilityActorInfo()
+{
+	ABSPlayerState* BSPlayerState = GetPlayerState<ABSPlayerState>();
+	check(BSPlayerState);
+	BSPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(BSPlayerState, this);
+	AbilitySystemComponent = BSPlayerState->GetAbilitySystemComponent();
+	AttributeSet = BSPlayerState->GetAttributeSet();
 }

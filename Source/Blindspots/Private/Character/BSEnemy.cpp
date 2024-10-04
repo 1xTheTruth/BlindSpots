@@ -34,4 +34,5 @@ void ABSEnemy::UnHighlightActor()
 void ABSEnemy::BeginPlay()
 {
 	Super::BeginPlay();
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
 }

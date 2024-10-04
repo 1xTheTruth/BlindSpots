@@ -25,5 +25,7 @@ public:
 	//** End Enemy Interface */
 
 protected:
+	
 	virtual void BeginPlay() override;
+	
 };
