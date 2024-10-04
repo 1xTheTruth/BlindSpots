@@ -3,13 +3,32 @@
 
 #include "UI/HUD/BSHUD.h"
 #include "UI/Widget/BSUserWidget.h"
+#include "UI/WidgetController/OverlayWidgetController.h"
 
-#include "Blueprint/UserWidget.h"
-
-void ABSHUD::BeginPlay()
+UOverlayWidgetController* ABSHUD::GetOverlayWidgetController(const FWidgetControllerParams& WCParams)
 {
-	Super::BeginPlay();
+	if (OverlayWidgetController == nullptr)
+	{
+		OverlayWidgetController = NewObject<UOverlayWidgetController>(this, OverlayWidgetControllerClass);
+		OverlayWidgetController->SetWidgetControllerParams(WCParams);
 
+		return OverlayWidgetController;
+	}
+	return OverlayWidgetController;
+}
+
+void ABSHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
+{
+	checkf(OverlayWidgetClass, TEXT("Overlay Widget Class uninitialized, please fill out BP_BSHUD"));
+	checkf(OverlayWidgetControllerClass, TEXT("Overlay Widget Controller Class uninitialized, please fill out BP_BSHUD"));
+	
 	UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), OverlayWidgetClass);
+	OverlayWidget = Cast<UBSUserWidget>(Widget);
+	
+	const FWidgetControllerParams WidgetControllerParams(PC, PS, ASC, AS);
+	UOverlayWidgetController* WidgetController = GetOverlayWidgetController(WidgetControllerParams);
+
+	OverlayWidget->SetWidgetController(WidgetController);
+	
 	Widget->AddToViewport();
 }

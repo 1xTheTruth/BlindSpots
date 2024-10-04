@@ -5,7 +5,9 @@
 
 #include "AbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Player/BSPlayerController.h"
 #include "Player/BSPlayerState.h"
+#include "UI/HUD/BSHUD.h"
 
 ABSCharacter::ABSCharacter()
 {
@@ -42,4 +44,12 @@ void ABSCharacter::InitAbilityActorInfo()
 	BSPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(BSPlayerState, this);
 	AbilitySystemComponent = BSPlayerState->GetAbilitySystemComponent();
 	AttributeSet = BSPlayerState->GetAttributeSet();
+
+	if (ABSPlayerController* BSPlayerController = Cast<ABSPlayerController>(GetController()))
+	{
+		if (ABSHUD* BSHUD = Cast<ABSHUD>(BSPlayerController->GetHUD()))
+		{
+			BSHUD->InitOverlay(BSPlayerController, BSPlayerState, AbilitySystemComponent, AttributeSet);
+		}
+	}
 }
