@@ -29,6 +29,7 @@ void ABSEffectActor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
 		
 		UBSAttributeSet* MutableBSAttributeSet = const_cast<UBSAttributeSet*>(BSAttributeSet);
 		MutableBSAttributeSet->SetHealth(BSAttributeSet->GetHealth() + 25.f);
+		MutableBSAttributeSet->SetMana(BSAttributeSet->GetMana() - 25.f);
 		Destroy();
 	}
 }

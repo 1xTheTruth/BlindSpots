@@ -15,3 +15,8 @@ void UBSWidgetController::BroadcastInitialValues()
 {
 	
 }
+
+void UBSWidgetController::BindCallbacksToDependencies()
+{
+	
+}

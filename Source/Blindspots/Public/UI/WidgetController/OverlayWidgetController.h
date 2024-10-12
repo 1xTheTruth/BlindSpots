@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AbilitySystem/BSAttributeSet.h"
 #include "UI/WidgetController/BSWidgetController.h"
 #include "OverlayWidgetController.generated.h"
 
@@ -25,6 +26,8 @@ public:
 
 	virtual void BroadcastInitialValues() override;
 
+	virtual void BindCallbacksToDependencies() override;
+
 	UPROPERTY(BlueprintAssignable, Category="GAS|Attributes")
 	FOnHealthChangedSignature OnHealthChanged;
 
@@ -42,5 +45,12 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category="GAS|Attributes")
 	FOnMaxStaminaChangedSignature OnMaxStaminaChanged;
+
+protected:
+
+	void HealthChanged(const FOnAttributeChangeData& Data) const;
+	void MaxHealthChanged(const FOnAttributeChangeData& Data) const;
+	void ManaChanged(const FOnAttributeChangeData& Data) const;
+	void MaxManaChanged(const FOnAttributeChangeData& Data) const;
 	
 };
