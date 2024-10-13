@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "BSEffectActor.generated.h"
 
-class USphereComponent;
+class UGameplayEffect;
 
 UCLASS()
 class BLINDSPOTS_API ABSEffectActor : public AActor
@@ -17,23 +17,17 @@ public:
 
 	ABSEffectActor();
 
-	UFUNCTION()
-	virtual void OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	UFUNCTION()
-	virtual void EndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	
 
 protected:
 
 	virtual void BeginPlay() override;
 
-private:
+	UFUNCTION(BlueprintCallable)
+	void ApplyEffectToTarget(AActor* Target, TSubclassOf<UGameplayEffect> GameplayEffectClass);
 
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<USphereComponent> Sphere;
+	UPROPERTY(EditAnywhere, Category = "Applied Effects")
+	TSubclassOf<UGameplayEffect> InstantGameplayEffectClass;
 
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UStaticMeshComponent> Mesh;
+	
 };
