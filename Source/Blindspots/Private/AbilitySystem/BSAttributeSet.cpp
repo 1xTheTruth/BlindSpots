@@ -6,9 +6,9 @@
 
 UBSAttributeSet::UBSAttributeSet()
 {
-	InitHealth(75.f);
+	InitHealth(50.f);
 	InitMaxHealth(100.f);
-	InitMana(40.f);
+	InitMana(10.f);
 	InitMaxMana(50.f);
 	InitStamina(100.f);
 	InitMaxStamina(100.f);
