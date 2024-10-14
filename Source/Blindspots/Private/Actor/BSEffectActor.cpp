@@ -35,6 +35,16 @@ void ABSEffectActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGamep
 	TargetASC->ApplyGameplayEffectSpecToSelf(*EffectSpecHandle.Data.Get());
 }
 
+void ABSEffectActor::OnOverlap(AActor* TargetActor)
+{
+	
+}
+
+void ABSEffectActor::OnEndOverlap(AActor* TargetActor)
+{
+	
+}
+
 
 
 
