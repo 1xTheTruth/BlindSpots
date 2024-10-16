@@ -10,7 +10,7 @@ UBSAttributeSet::UBSAttributeSet()
 	InitMaxHealth(100.f);
 	InitMana(10.f);
 	InitMaxMana(50.f);
-	InitStamina(100.f);
+	InitStamina(50.f);
 	InitMaxStamina(100.f);
 }
 
@@ -24,6 +24,24 @@ void UBSAttributeSet::GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>
 	DOREPLIFETIME_CONDITION_NOTIFY(UBSAttributeSet, MaxMana, COND_None, REPNOTIFY_Always)
 	DOREPLIFETIME_CONDITION_NOTIFY(UBSAttributeSet, Stamina, COND_None, REPNOTIFY_Always)
 	DOREPLIFETIME_CONDITION_NOTIFY(UBSAttributeSet, MaxStamina, COND_None, REPNOTIFY_Always)
+}
+
+void UBSAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
+{
+	Super::PreAttributeChange(Attribute, NewValue);
+
+	if (Attribute == GetHealthAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxHealth());
+	}
+	if (Attribute == GetManaAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxMana());
+	}
+	if (Attribute == GetStaminaAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxStamina());
+	}
 }
 
 void UBSAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
