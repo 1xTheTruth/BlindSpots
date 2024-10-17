@@ -21,3 +21,8 @@ void ABSCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 }
+
+void ABSCharacterBase::InitAbilityActorInfo()
+{
+	
+}

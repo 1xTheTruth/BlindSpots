@@ -34,5 +34,11 @@ void ABSEnemy::UnHighlightActor()
 void ABSEnemy::BeginPlay()
 {
 	Super::BeginPlay();
+	InitAbilityActorInfo();
+}
+
+void ABSEnemy::InitAbilityActorInfo()
+{
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	Cast<UBSAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
 }

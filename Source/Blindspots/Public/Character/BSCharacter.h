@@ -15,6 +15,7 @@ class BLINDSPOTS_API ABSCharacter : public ABSCharacterBase
 	GENERATED_BODY()
 	
 public:
+	
 	ABSCharacter();
 
 	virtual void PossessedBy(AController* NewController) override;
@@ -22,5 +23,6 @@ public:
 
 private:
 
-	void InitAbilityActorInfo();
+	virtual void InitAbilityActorInfo() override;
+	
 };

@@ -4,6 +4,7 @@
 #include "Character/BSCharacter.h"
 
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/BSAbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Player/BSPlayerController.h"
 #include "Player/BSPlayerState.h"
@@ -42,6 +43,7 @@ void ABSCharacter::InitAbilityActorInfo()
 	ABSPlayerState* BSPlayerState = GetPlayerState<ABSPlayerState>();
 	check(BSPlayerState);
 	BSPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(BSPlayerState, this);
+	Cast<UBSAbilitySystemComponent>(BSPlayerState->GetAbilitySystemComponent())->AbilityActorInfoSet();
 	AbilitySystemComponent = BSPlayerState->GetAbilitySystemComponent();
 	AttributeSet = BSPlayerState->GetAttributeSet();
 
