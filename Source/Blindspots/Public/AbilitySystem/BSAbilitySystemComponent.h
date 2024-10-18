@@ -6,6 +6,8 @@
 #include "AbilitySystemComponent.h"
 #include "BSAbilitySystemComponent.generated.h"
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, FGameplayTagContainer& /* AssetTags */);
+
 /**
  * 
  */
@@ -17,6 +19,8 @@ class BLINDSPOTS_API UBSAbilitySystemComponent : public UAbilitySystemComponent
 public:
 
 	void AbilityActorInfoSet();
+
+	FEffectAssetTags EffectAssetTags;
 	
 protected:
 
