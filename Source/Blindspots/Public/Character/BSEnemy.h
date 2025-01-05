@@ -13,5 +13,13 @@ UCLASS()
 class BLINDSPOTS_API ABSEnemy : public ABSCharacterBase
 {
 	GENERATED_BODY()
+
+public:
+
+
+
+protected:
+
+	virtual void BeginPlay() override;
 	
 };

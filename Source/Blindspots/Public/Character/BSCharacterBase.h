@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "BSCharacterBase.generated.h"
 
+
 UCLASS(Abstract)
 class BLINDSPOTS_API ABSCharacterBase : public ACharacter
 {
@@ -19,5 +20,5 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category="Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
-	
+
 };

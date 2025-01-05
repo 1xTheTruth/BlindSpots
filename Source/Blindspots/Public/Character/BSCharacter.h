@@ -13,5 +13,15 @@ UCLASS()
 class BLINDSPOTS_API ABSCharacter : public ABSCharacterBase
 {
 	GENERATED_BODY()
+
+public:
+
+	ABSCharacter();
+
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
+
+private:
+
 	
 };
