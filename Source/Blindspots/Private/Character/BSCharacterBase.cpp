@@ -12,10 +12,19 @@ ABSCharacterBase::ABSCharacterBase()
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
+UAbilitySystemComponent* ABSCharacterBase::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
 
 void ABSCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void ABSCharacterBase::InitAbilityActorInfo()
+{
+	
 }
 
 

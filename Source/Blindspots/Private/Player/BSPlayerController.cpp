@@ -26,6 +26,20 @@ void ABSPlayerController::CursorTrace()
 
 	LastActor = ThisActor;
 	ThisActor = CursorHit.GetActor();
+
+	/**
+* Line trace from cursor. There are several scenarios:
+* A. LastActor is null && ThisActor is null
+*	- Do Nothing.
+* B. LastActor is null && ThisActor is valid
+*	- Highlight ThisActor
+* C. LastActor is valid && ThisActor is null
+*	- UnHighlight LastActor
+* D. Both actors are valid, but LastActor != ThisActor
+*	- UnHighlight LastActor, and Highlight ThisActor
+* E. Both actors are valid, and are the same actor
+*	- Do Nothing
+*/
 	
 	if (LastActor == nullptr)
 	{
